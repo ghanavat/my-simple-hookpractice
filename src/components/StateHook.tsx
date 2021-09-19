@@ -20,7 +20,7 @@ const StateHook = () => {
             <hr />
             <Alert variant="warning">Persisted time on load: {firstTimeClick.dateTimeValue}</Alert>
             <hr />
-            <Alert variant="success">Then you clicked me again on: {timeClicking.dateTimeValue}</Alert>
+            <Alert variant="success">Then you clicked me on: {timeClicking.dateTimeValue}</Alert>
         </div>
     )
 };
