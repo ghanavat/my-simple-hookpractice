@@ -1,5 +1,12 @@
-.side-effect{
-    .api-result {
-        font-size: 0.4em;
-    }
+.components{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    max-width: 50%;
+}
+
+.title{
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0.5em;
 }
