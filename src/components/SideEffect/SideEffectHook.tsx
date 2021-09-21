@@ -24,10 +24,8 @@ const SideEffectHook = () => {
     const metOfficeBasingstokeLocationId = "310025";
     const metOfficeApiKey = "29968d06-de2e-4c7a-9270-978e60c7a070";
 
-    useEffect(() => {
-        console.log("Selected format on load:", selectedFormat.selectedFormat);        
+    useEffect(() => {        
         if (selectedFormat.selectedFormat !== "") {
-            console.log("API Called!!!!");
             const metOfficeApiUrl = `http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/${selectedFormat.selectedFormat}/${metOfficeBasingstokeLocationId}?res=daily&key=${metOfficeApiKey}`;
 
             fetch(metOfficeApiUrl)

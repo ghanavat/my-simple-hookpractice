@@ -3,6 +3,7 @@ import './App.css';
 import "./styles/site.scss"
 import StateHook from './components/StateHook/StateHook';
 import SideEffectHook from './components/SideEffect/SideEffectHook';
+import CallBack from './components/CallBack/CallBack';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <div className="components">
         <StateHook />
         <SideEffectHook />
+        <CallBack />
       </div>
     </div>
   );
