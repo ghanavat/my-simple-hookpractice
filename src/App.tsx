@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <div>My Simple React Practice</div>
+        <div>My Simple React Hooks Practice</div>
       </header>
 
       <div className="components">
