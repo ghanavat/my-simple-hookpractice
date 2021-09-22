@@ -4,6 +4,7 @@ import "./styles/site.scss"
 import StateHook from './components/StateHook/StateHook';
 import SideEffectHook from './components/SideEffect/SideEffectHook';
 import CallBack from './components/CallBack/CallBack';
+import UseMemo from './components/UseMemo/UseMemo';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <StateHook />
         <SideEffectHook />
         <CallBack />
+        <UseMemo />
       </div>
     </div>
   );

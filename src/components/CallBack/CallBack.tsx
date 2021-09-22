@@ -43,7 +43,7 @@ const CallBack = () => {
 
     return(
         <div className="callback container">
-            <div className="title">CallBack example 1</div>
+            <div className="title">useCallback example</div>
                 <Toast>
                     <Toast.Header closeButton={false}>
                         <div className="header-content">

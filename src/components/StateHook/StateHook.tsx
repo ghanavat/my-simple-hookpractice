@@ -18,12 +18,12 @@ const StateHook = () => {
 
     return (
         <div className="state-hook container">
-            <div className="title">State Hook example</div>
+            <div className="title">useState example</div>
             <div className="button-align-left">
                 <Button id="btn-state-hook" variant="primary" type="button" onClick={() => handler()}>State Hook</Button>
             </div>
             <hr />
-            <Alert variant="warning">Persisted on load: {firstTimeClick.dateTimeValue}</Alert>
+            <Alert variant="info">Persisted on load: {firstTimeClick.dateTimeValue}</Alert>
             <Alert variant="success">You clicked me on: {timeClicking.dateTimeValue}</Alert>
         </div>
     )

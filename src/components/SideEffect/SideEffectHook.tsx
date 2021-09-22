@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import "bootstrap/scss/bootstrap.scss";
-import {Form} from "react-bootstrap";
+import {Alert, Form} from "react-bootstrap";
 import IWeatherResult from '../../interfaces/components/IWeatherResult'
 import ISelectedFormat from "../../interfaces/components/ISelectedFormat";
 import "../SideEffect/sideEffect.scss";
@@ -24,7 +24,12 @@ const SideEffectHook = () => {
     const metOfficeBasingstokeLocationId = "310025";
     const metOfficeApiKey = "29968d06-de2e-4c7a-9270-978e60c7a070";
 
-    useEffect(() => {        
+    useEffect(() => {
+        if (selectedFormat.selectedFormat === "") {
+            setWeatherResult({result: ""});
+            return;
+        };
+
         if (selectedFormat.selectedFormat !== "") {
             const metOfficeApiUrl = `http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/${selectedFormat.selectedFormat}/${metOfficeBasingstokeLocationId}?res=daily&key=${metOfficeApiKey}`;
 
@@ -42,10 +47,10 @@ const SideEffectHook = () => {
     
     return (
         <div className="side-effect container">
-            <div className="title">Effect example</div>
+            <div className="title">useEffect example</div>
             <div className="">
                 <Form.Select className="dropdown" onChange={(e) => setFormat({selectedFormat: e.currentTarget.value})}>
-                    <option>Select a format</option>
+                    <option value="">Select a format</option>
                     {dropDownOptions.map((option) => (
                         <option key={option.value} value={option.value}>{option.label}</option>
                     ))}
@@ -55,7 +60,7 @@ const SideEffectHook = () => {
             <hr/>
             <div className="side-effect api-result-wrapper">
                 <span className="api-result">
-                    {weatherResult.result}
+                    {weatherResult.result !== "" ? weatherResult.result : <Alert variant="warning">No Data</Alert>}
                 </span>
             </div>
         </div>
