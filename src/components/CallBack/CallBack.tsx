@@ -49,7 +49,7 @@ const CallBack = () => {
                         <div className="header-content">
                             <div className="gap">
                                 <Form.Select onChange={(e) => setTown(e.currentTarget.value)}>
-                                    <option>Please select a town</option>
+                                    <option value="">Please select a town</option>
                                     <option value="310025">Basingstoke</option>
                                     <option value="3840">Dunkeswell Aerodrome</option>
                                 </Form.Select>
