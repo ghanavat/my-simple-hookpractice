@@ -1,3 +1,3 @@
 export default interface IWeatherResult {
-    xmlResult: string | "";
+    result: string | "";
 };

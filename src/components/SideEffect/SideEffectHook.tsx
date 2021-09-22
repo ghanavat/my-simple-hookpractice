@@ -18,7 +18,7 @@ const dropDownOptions = [
 ];
 
 const SideEffectHook = () => {
-    const [weatherResult, setWeatherResult] = useState<IWeatherResult>({xmlResult: ""});
+    const [weatherResult, setWeatherResult] = useState<IWeatherResult>({result: ""});
     const [selectedFormat, setFormat] = useState<ISelectedFormat>({selectedFormat: ""});
 
     const metOfficeBasingstokeLocationId = "310025";
@@ -35,7 +35,7 @@ const SideEffectHook = () => {
                 }
             })
             .then(data => {
-                setWeatherResult({xmlResult: data!});
+                setWeatherResult({result: data!});
             });
         }
     }, [selectedFormat]);
@@ -54,8 +54,8 @@ const SideEffectHook = () => {
             
             <hr/>
             <div className="side-effect api-result-wrapper">
-                                <span className="api-result">
-                    {weatherResult.xmlResult}
+                <span className="api-result">
+                    {weatherResult.result}
                 </span>
             </div>
         </div>
