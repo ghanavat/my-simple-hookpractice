@@ -1,6 +1,7 @@
 import { Button, Modal } from 'react-bootstrap';
 import "bootstrap/scss/bootstrap.scss";
 import { IWeatherModalResult } from '../../interfaces/components/IWeatherModalResult';
+import React from 'react';
 
 const WeatherModal : React.FC<IWeatherModalResult> = ({result, show, onClick, ...props}) => {
     return(
@@ -23,4 +24,4 @@ const WeatherModal : React.FC<IWeatherModalResult> = ({result, show, onClick, ..
     );
 };
 
-export default WeatherModal;
+export default React.memo(WeatherModal);

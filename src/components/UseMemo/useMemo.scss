@@ -2,7 +2,6 @@
     &.container {
         display: flex;
         flex-direction: column;
-        max-width: 400px;
         // justify-content: flex-start; Not needed as it's flex default
-    }
+    }    
 }

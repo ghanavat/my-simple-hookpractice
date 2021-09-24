@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import "bootstrap/scss/bootstrap.scss";
-import {Alert, Form} from "react-bootstrap";
+import {Alert, Form, FormGroup} from "react-bootstrap";
 import IWeatherResult from '../../interfaces/components/IWeatherResult'
 import ISelectedFormat from "../../interfaces/components/ISelectedFormat";
 import "../SideEffect/sideEffect.scss";
@@ -47,21 +47,24 @@ const SideEffectHook = () => {
     
     return (
         <div className="side-effect container">
-            <div className="title">useEffect example</div>
-            <div className="">
-                <Form.Select className="dropdown" onChange={(e) => setFormat({selectedFormat: e.currentTarget.value})}>
+            <div className="title">useEffect</div>
+            <div className="form-row">
+                <FormGroup>
+                    {/* <Form.Label>Select a format</Form.Label> */}
+                    <Form.Select className="dropdown" onChange={(e) => setFormat({selectedFormat: e.currentTarget.value})}>
                     <option value="">Select a format</option>
-                    {dropDownOptions.map((option) => (
-                        <option key={option.value} value={option.value}>{option.label}</option>
-                    ))}
-                </Form.Select>
+                        {dropDownOptions.map((option) => (
+                            <option key={option.value} value={option.value}>{option.label}</option>
+                        ))}
+                    </Form.Select>
+                </FormGroup>
             </div>
             
             <hr/>
-            <div className="side-effect api-result-wrapper">
-                <span className="api-result">
+            <div className="api-result-wrapper">
+                <p>
                     {weatherResult.result !== "" ? weatherResult.result : <Alert variant="warning">No Data</Alert>}
-                </span>
+                </p>
             </div>
         </div>
     );

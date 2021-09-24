@@ -18,8 +18,8 @@ const StateHook = () => {
 
     return (
         <div className="state-hook container">
-            <div className="title">useState example</div>
-            <div className="button-align-left">
+            <div className="title">useState</div>
+            <div className="form-row">
                 <Button id="btn-state-hook" variant="primary" type="button" onClick={() => handler()}>State Hook</Button>
             </div>
             <hr />

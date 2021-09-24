@@ -2,14 +2,10 @@
     &.container{
         display: flex;
         flex-direction: column;
-        max-width: 350px;        
     }
 
-    &.api-result-wrapper {
+    .api-result-wrapper {
         font-size: 1em;
         height: 200px;
-    }
-    .api-result {
-        //background-color: green;
-    }
+    }    
 }
