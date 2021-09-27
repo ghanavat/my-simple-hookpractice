@@ -1,28 +1,36 @@
-import { useCallback, useState } from 'react';
+import { useMemo, useState } from 'react';
 import "bootstrap/scss/bootstrap.scss";
 import "../UseMemo/useMemo.scss";
 import "../../styles/site.scss";
-import { Button, Toast } from 'react-bootstrap';
+import { Alert, Button, Form, Toast } from 'react-bootstrap';
 
 const UseMemo = () => {
     const [show, setShow] = useState(false);
+    const [somethingChanged, setSomething] = useState('');
+
+    const veryExpensiveCalculation = useMemo(() => {
+        if (somethingChanged === "") {
+            return <></>;            
+        }
+        return (
+            <Alert variant="danger">I am very expensive, don't let React render me each time!</Alert>
+        );
+    }, [somethingChanged]);
+
+    const veryExpensiveCalculationWithoutMemoization = () => {        
+        return <Alert variant="danger">I am very expensive, don't let React render me each time!</Alert>
+    };
 
     return(
         <div className="useMemo container">
             <div className="title">useMemo</div>
-            <div>
-                <Button className="bi bi-info-circle form-row" type="button" variant="primary" aria-label="Info" onClick={() => setShow(true)} />
+            <div className="form-row">
+                <Button className="bi bi-info-circle form-row" type="button" variant="warning" aria-label="Info" onClick={() => setShow(true)} />
             </div>
 
-            <Toast onClose={() => setShow(false)} show={show} delay={5000}>
-                <Toast.Header>
-                    <img
-                    src="holder.js/20x20?text=%20"
-                    className="rounded me-2"
-                    alt=""
-                    />
-                    <strong className="me-auto">About useMemo</strong>
-                    {/* <small>11 mins ago</small> */}
+            <Toast onClose={() => setShow(false)} show={show} delay={5000}>                
+                <Toast.Header>                   
+                    <strong className="me-auto">About useMemo</strong>                    
                 </Toast.Header>
                 <Toast.Body>
                     <ul>
@@ -33,6 +41,16 @@ const UseMemo = () => {
                     </ul>
                 </Toast.Body>
             </Toast>
+
+            <div className="form-row">
+                <Form.Select onChange={(e) => setSomething(e.currentTarget.value)}>
+                    <option value="">Do something</option>
+                    <option value="1">Change of state</option>
+                    <option value="1">Another change of state</option>
+                </Form.Select>
+            </div>
+            {/* {veryExpensiveCalculationWithoutMemoization()} */}
+            {veryExpensiveCalculation}
         </div>
     );
 };
