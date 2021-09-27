@@ -23,8 +23,10 @@ const StateHook = () => {
                 <Button id="btn-state-hook" variant="primary" type="button" onClick={() => handler()}>State Hook</Button>
             </div>
             <hr />
-            <Alert variant="info">Persisted on load: {firstTimeClick.dateTimeValue}</Alert>
-            <Alert variant="success">You clicked me on: {timeClicking.dateTimeValue}</Alert>
+            <div className="form-row space">
+                <Alert variant="info">Persisted on load: {firstTimeClick.dateTimeValue}</Alert>
+                <Alert variant="success">You clicked me on: {timeClicking.dateTimeValue}</Alert>
+            </div>
         </div>
     )
 };

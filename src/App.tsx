@@ -5,6 +5,7 @@ import StateHook from './components/StateHook/StateHook';
 import SideEffectHook from './components/SideEffect/SideEffectHook';
 import CallBack from './components/CallBack/CallBack';
 import UseMemo from './components/UseMemo/UseMemo';
+import UseRef from './components/UseRef/useRef';
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
         <SideEffectHook />
         <CallBack />
         <UseMemo />
+      </div>
+      <div className="components">
+        <UseRef />
       </div>
     </div>
   );

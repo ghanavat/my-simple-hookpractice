@@ -7,5 +7,10 @@
     .api-result-wrapper {
         font-size: 1em;
         height: 200px;
+        width: 450px;
+        
+        &.with-scroll{
+            overflow: scroll;
+        }
     }    
 }

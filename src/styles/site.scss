@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    max-width: 100%;
+    flex-wrap: wrap-reverse;
 }
 
 .title{
@@ -16,4 +16,12 @@
 .form-row{
     display: flex;
     flex-direction: row;
+
+    &.space{
+        justify-content: space-evenly;        
+    }
+}
+.form-column{
+    display: flex;
+    flex-direction: column;
 }

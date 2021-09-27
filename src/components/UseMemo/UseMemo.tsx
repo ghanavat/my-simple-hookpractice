@@ -10,14 +10,14 @@ const UseMemo = () => {
 
     const veryExpensiveCalculation = useMemo(() => {
         if (somethingChanged === "") {
-            return <></>;            
+            return <></>;
         }
         return (
             <Alert variant="danger">I am very expensive, don't let React render me each time!</Alert>
         );
     }, [somethingChanged]);
 
-    const veryExpensiveCalculationWithoutMemoization = () => {        
+    const veryExpensiveCalculationWithoutMemoization = () => {
         return <Alert variant="danger">I am very expensive, don't let React render me each time!</Alert>
     };
 
@@ -28,9 +28,9 @@ const UseMemo = () => {
                 <Button className="bi bi-info-circle form-row" type="button" variant="warning" aria-label="Info" onClick={() => setShow(true)} />
             </div>
 
-            <Toast onClose={() => setShow(false)} show={show} delay={5000}>                
-                <Toast.Header>                   
-                    <strong className="me-auto">About useMemo</strong>                    
+            <Toast onClose={() => setShow(false)} show={show} delay={5000}>
+                <Toast.Header>
+                    <strong className="me-auto">About useMemo</strong>
                 </Toast.Header>
                 <Toast.Body>
                     <ul>

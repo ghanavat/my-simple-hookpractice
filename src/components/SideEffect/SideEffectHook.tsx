@@ -45,12 +45,13 @@ const SideEffectHook = () => {
         }
     }, [selectedFormat]);
     
+    const showScroll = weatherResult.result !== "" && "with-scroll";
+    
     return (
         <div className="side-effect container">
             <div className="title">useEffect</div>
             <div className="form-row">
                 <FormGroup>
-                    {/* <Form.Label>Select a format</Form.Label> */}
                     <Form.Select className="dropdown" onChange={(e) => setFormat({selectedFormat: e.currentTarget.value})}>
                     <option value="">Select a format</option>
                         {dropDownOptions.map((option) => (
@@ -61,10 +62,8 @@ const SideEffectHook = () => {
             </div>
             
             <hr/>
-            <div className="api-result-wrapper">
-                <p>
-                    {weatherResult.result !== "" ? weatherResult.result : <Alert variant="warning">No Data</Alert>}
-                </p>
+            <div className={`api-result-wrapper ${showScroll}`}>
+                {weatherResult.result !== "" ? weatherResult.result : <Alert variant="warning">No Data</Alert>}
             </div>
         </div>
     );
