@@ -2,45 +2,35 @@ import { useCallback, useState } from 'react';
 import "bootstrap/scss/bootstrap.scss";
 import "../CallBack/callBack.scss";
 import { Alert, Button, Form, Toast } from 'react-bootstrap';
-import IWeatherResult from '../../interfaces/components/IWeatherResult';
 import WeatherModal from '../WeatherModal/WeatherModal';
+import useMyHook from '../MyHook/useMyHook';
+import IUseMyHook from '../../interfaces/hooks/IUseMyHook';
 
 /* DO NOT use useCallback purely to prevent useless re-rendering of child components using the callback function. */
 const CallBack = () => {
-    const metOfficeApiKey = "29968d06-de2e-4c7a-9270-978e60c7a070";
-
     const [show, setShow] = useState(false);
     const [town, setTown] = useState('');
+    const {get, reset, result} = useMyHook();
+
+    const handleShow = () => {
+        setShow(true);
+    };
+
     const handleClose = () => {
         setShow(false);
-        resetModal();
-    };
-    const handleShow = () => setShow(true);
-    const [weatherResult, setWeatherResult] = useState<IWeatherResult>({result: ""});
-    const enableButton = town !== "" ? "" : "disabled";
-
-    const resetModal = () => {
-        setWeatherResult({result: ""});
+        reset();
     };
 
     const handleApiCall = useCallback(() => {
-        const metOfficeApiUrl = `http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/xml/${town}?res=daily&key=${metOfficeApiKey}`;
+        const request: IUseMyHook = {
+            town: town,
+            format: "xml"
+        };
 
-        if (town === "") return;
+        get(request);
+    }, [town, get]);
 
-        console.log("Town state:", town);
-
-        fetch(metOfficeApiUrl)
-            .then(response => {
-                if (response.ok) {
-                    return response.text();
-                }
-            })
-            .then(data => {
-                setWeatherResult({result: data!});
-            });
-    }, [town]);
-
+    const enableButton = town !== "" ? "" : "disabled";
     return(
         <div className="callback container">
             <div className="title">useCallback</div>
@@ -61,7 +51,7 @@ const CallBack = () => {
                 </Toast>
             <hr />
             <Alert variant="info">Result will be in a modal!</Alert>
-            {<WeatherModal result={weatherResult.result} show={show} onHide={handleClose} onClick={handleApiCall} />}            
+            {<WeatherModal result={result} show={show} onHide={handleClose} onClick={handleApiCall} />}
         </div>
     );
 };

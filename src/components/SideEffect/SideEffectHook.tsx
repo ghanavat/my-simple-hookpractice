@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import "bootstrap/scss/bootstrap.scss";
 import {Alert, Form, FormGroup} from "react-bootstrap";
-import IWeatherResult from '../../interfaces/components/IWeatherResult'
 import ISelectedFormat from "../../interfaces/components/ISelectedFormat";
 import "../SideEffect/sideEffect.scss";
 import "../../styles/site.scss";
+import useMyHook from '../MyHook/useMyHook';
+import IUseMyHook from '../../interfaces/hooks/IUseMyHook';
 
 const dropDownOptions = [
     {
@@ -18,34 +19,28 @@ const dropDownOptions = [
 ];
 
 const SideEffectHook = () => {
-    const [weatherResult, setWeatherResult] = useState<IWeatherResult>({result: ""});
     const [selectedFormat, setFormat] = useState<ISelectedFormat>({selectedFormat: ""});
-
-    const metOfficeBasingstokeLocationId = "310025";
-    const metOfficeApiKey = "29968d06-de2e-4c7a-9270-978e60c7a070";
+    const {get, reset, result} = useMyHook();
 
     useEffect(() => {
         if (selectedFormat.selectedFormat === "") {
-            setWeatherResult({result: ""});
+            reset();
             return;
         };
 
         if (selectedFormat.selectedFormat !== "") {
-            const metOfficeApiUrl = `http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/${selectedFormat.selectedFormat}/${metOfficeBasingstokeLocationId}?res=daily&key=${metOfficeApiKey}`;
-
-            fetch(metOfficeApiUrl)
-            .then(response => {
-                if (response.ok) {
-                    return response.text();
-                }
-            })
-            .then(data => {
-                setWeatherResult({result: data!});
-            });
-        }
-    }, [selectedFormat]);
+            const request: IUseMyHook = {
+                town: "310025",
+                format: selectedFormat.selectedFormat
+            };
     
-    const showScroll = weatherResult.result !== "" && "with-scroll";
+            get(request);
+        }
+        return (reset());
+        
+    }, [selectedFormat, get, reset]);
+    
+    const showScroll = result !== "" && "with-scroll";
     
     return (
         <div className="side-effect container">
@@ -63,7 +58,7 @@ const SideEffectHook = () => {
             
             <hr/>
             <div className={`api-result-wrapper ${showScroll}`}>
-                {weatherResult.result !== "" ? weatherResult.result : <Alert variant="warning">No Data</Alert>}
+                {result !== "" ? result : <Alert variant="warning">No Data</Alert>}
             </div>
         </div>
     );
